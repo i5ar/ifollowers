@@ -57,10 +57,10 @@ pip-log.txt
 
 
 #############
-## Caches
+## Python detritus
 #############
 
-# Caches folders
+# Python file caches
 __pycache__/
 */__pycache__/
 */*/__pycache__/
