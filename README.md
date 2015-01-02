@@ -1,7 +1,8 @@
 iFollowers
 ----------
 
-Keep track of your Twitter followers.
+:squirrel: Keep track of your Twitter followers.
+
 
 > When you have a lage number of unfollowers there must be a reason! This script will help you to detect your unfollowers and so far improving the quality of your tweets! Tracking your unfollowers makes easier to understand if it's your fault!
 
