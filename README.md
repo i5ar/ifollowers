@@ -1,10 +1,9 @@
 iFollowers
 ----------
 
-:squirrel: Keep track of your Twitter followers.
+:eyes: Keep track of your Twitter followers.
 
-
-> When you have a lage number of unfollowers there must be a reason! This script will help you to detect your unfollowers and so far improving the quality of your tweets! Tracking your unfollowers makes easier to understand if it's your fault!
+> When you have a lage number of unfollowers there must be a reason! This script will help you to detect them and so far improving the quality of your tweets.
 
 ### Installation and required packages
 
@@ -19,7 +18,7 @@ iFollowers
 
 # Use
 
-Save the script [*ifollowers.py*](https://github.com/i5ar/ifollowers/blob/master/ifollowers.py) and the module [*ioauth.py*](https://github.com/i5ar/ifollowers/blob/master/ioauth.py) in the same directory, then run the script. It will list and save all your **Current followers** so next time you are going to run the script (wait al least 15 minutes) it will be able to list:
+Save the script [*ifollowers.py*](https://github.com/i5ar/ifollowers/blob/master/ifollowers.py) and the module [*ioauth.py*](https://github.com/i5ar/ifollowers/blob/master/ioauth.py) in the same directory, then run the script. It will list and save all your **Current followers** so next time you are going to run the script it will be able to list:
 - **Previous followers**;
 - **New followers**;
 - **Unfollowers**.
@@ -63,7 +62,7 @@ Please, come back to check new and awesome releases!
 *Release Version 0.0.1*
 *Release Date - 21th December, 2014*
 
- - Having some fun with *BeautifulSoup*.
+ - Having some fun with *BeautifulSoup* coding *ifollowers.py*.
 
 ### Todo
 
@@ -72,7 +71,6 @@ Please, come back to check new and awesome releases!
 - Style;
 
 > I don't have 10000 Twitter followers, if you do have that amount of folks in your list, please let me know if everything works fine.
-
 
 ### License
 
