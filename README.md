@@ -36,7 +36,7 @@ This script is meant to be used in respect of Twitter [Following rules and best 
 I take no responsibility or liability for any damages including damages arising from use or loss of use, data, or profits.
 
 > iFollowers is **free** and **open-source** made for fun in my spare time. It does look simple and not styled at all.
-Please, come back to check new and awesome releases! Any contribution will be greatly appreciated.
+Please, come back to check new and awesome releases! Any contribution or suggestion will be greatly appreciated.
 
 ### Changelog
 
