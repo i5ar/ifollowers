@@ -35,7 +35,7 @@ Before to run the script you need to **Create New App** at <a href="https://apps
 This script is meant to be used in respect of Twitter [Following rules and best practices](https://support.twitter.com/entries/68916-following-rules-and-best-practices).
 I take no responsibility or liability for any damages including damages arising from use or loss of use, data, or profits.
 
-> iFollowers is **free** and **open-source** made for fun in my spare time. It does look simple and not styled at all.
+> iFollowers was made for fun in my spare time.
 Please, come back to check new and awesome releases! Any contribution or suggestion will be greatly appreciated.
 
 ### Changelog
