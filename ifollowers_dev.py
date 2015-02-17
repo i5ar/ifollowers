@@ -4,7 +4,6 @@ import os
 import time
 import glob
 import markdown
-
 import tweepy
 
 '''
@@ -25,7 +24,6 @@ isar_dynamic_oauth = ioauth.DynamicTwitterOAuth(
     access_token,
     access_token_secret )
 '''
-
 
 # Static Twitter OAuth
 import ioauth_isar
