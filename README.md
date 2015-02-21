@@ -3,7 +3,9 @@ iFollowers
 
 :eyes: Keep track of your Twitter followers.
 
-> When you have a lage number of unfollowers there must be a reason! This script will help you to detect them and so far improving the quality of your tweets.
+> This script was made for fun in my spare time.
+
+When you have a lage number of unfollowers there must be a reason! This script will help you to detect them.
 
 ### Installation and required packages
 
@@ -35,8 +37,7 @@ Before to run the script you need to **Create New App** at <a href="https://apps
 This script is meant to be used in respect of Twitter [Following rules and best practices](https://support.twitter.com/entries/68916-following-rules-and-best-practices).
 I take no responsibility or liability for any damages including damages arising from use or loss of use, data, or profits.
 
-> iFollowers was made for fun in my spare time.
-Please, come back to check new and awesome releases! Any contribution or suggestion will be greatly appreciated.
+> Please, come back to check new and awesome releases! Any contribution or suggestion will be greatly appreciated.
 
 ### Changelog
 
