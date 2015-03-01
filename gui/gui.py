@@ -9,12 +9,13 @@
 
 from PySide import QtCore, QtGui
 
+
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(401, 303)
+        Form.resize(400, 300)
         self.gridLayoutWidget = QtGui.QWidget(Form)
-        self.gridLayoutWidget.setGeometry(QtCore.QRect(10, 10, 381, 281))
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(10, 10, 380, 280))
         self.gridLayoutWidget.setObjectName("gridLayoutWidget")
         self.gridLayout = QtGui.QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
@@ -55,25 +56,25 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QtGui.QApplication.translate("Form", "Form", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_3.setText(QtGui.QApplication.translate("Form", "Consumer secret", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_5.setText(QtGui.QApplication.translate("Form", "Access token secret", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_4.setText(QtGui.QApplication.translate("Form", "Access token", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_2.setText(QtGui.QApplication.translate("Form", "Consumer key", None, QtGui.QApplication.UnicodeUTF8))
-        self.label.setText(QtGui.QApplication.translate("Form", "Owner", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_3.setText(QtGui.QApplication.translate("Form", "Consumer secret:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_5.setText(QtGui.QApplication.translate("Form", "Access token secret:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_4.setText(QtGui.QApplication.translate("Form", "Access token:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_2.setText(QtGui.QApplication.translate("Form", "Consumer key:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("Form", "Owner:", None, QtGui.QApplication.UnicodeUTF8))
 
-# i5
 
-class ControlMainWindow(QtGui.QMainWindow):
+class ControlWindow(QtGui.QMainWindow):
     def __init__(self, parent = None):
-        super(ControlMainWindow, self).__init__(parent)
-        self.ui = Ui_Form() # Class above
-        self.ui.setupUi(self)
+        super(ControlWindow, self).__init__(parent)
+        self.ui = Ui_Form()     # Class above
+        self.ui.setupUi(self)   # Method above
+
 
 if __name__ == "__main__":
 
     import sys
 
     app = QtGui.QApplication(sys.argv)
-    window = ControlMainWindow()
+    window = ControlWindow()
     window.show()
     sys.exit(app.exec_())
