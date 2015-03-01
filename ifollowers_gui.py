@@ -43,6 +43,8 @@ if not os.path.exists('_build\\dat'):
     os.makedirs('_build\\dat')
 
 # Create a name with current date and time
+# Representing a time [4]
+# [4]: http://bit.ly/1A2stqn
 date_name = time.strftime("%Y-%m-%dT%H%M%S")
 only_date_name = time.strftime("%Y-%m-%d")
 date_name_path = '_build\\dat\\'+date_name+'.dat'
@@ -61,6 +63,9 @@ def followers( ls ):
         out_md.write('- ['+i+'](https://twitter.com/'+i+')\n')
     out_md.write('\n')
 
+
+# File Input Output [1]
+# [1]: http://bit.ly/1sWobRM
 with open(date_name_path, "wt") as out_md:
     for i in last_ls:
         out_md.write(i+'\n')
@@ -79,6 +84,7 @@ dic = {}
 for file in glob.glob("_build\\dat\\*.dat"):
     key = int(os.path.getmtime(file))   # Key
     dic[key] = file                     # Value
+#print(dic)
 
 ls = []
 for key in dic.keys():
@@ -118,6 +124,8 @@ if len(ls) > 1 :
         # TODO second_last_ls
         second_last_ls = []
 
+# Markdown Details [2]
+# [2]: http://bit.ly/1weDnEg
 with open("_build\\markdown\\iFollowers.md", 'rt') as in_md:
     text = in_md.read()
     html = markdown.markdown(text)
