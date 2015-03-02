@@ -2,13 +2,12 @@
 
 # Form implementation generated from reading ui file 'gui.ui'
 #
-# Created: Sat Feb 28 22:31:32 2015
+# Created: Sun Mar  1 03:39:07 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
 
 from PySide import QtCore, QtGui
-
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -29,27 +28,30 @@ class Ui_Form(object):
         self.label_4 = QtGui.QLabel(self.gridLayoutWidget)
         self.label_4.setObjectName("label_4")
         self.gridLayout.addWidget(self.label_4, 4, 0, 1, 1)
+        self.lineEdit = QtGui.QLineEdit(self.gridLayoutWidget)
+        self.lineEdit.setObjectName("lineEdit")
+        self.gridLayout.addWidget(self.lineEdit, 0, 1, 1, 1)
         self.label_2 = QtGui.QLabel(self.gridLayoutWidget)
         self.label_2.setObjectName("label_2")
         self.gridLayout.addWidget(self.label_2, 2, 0, 1, 1)
         self.label = QtGui.QLabel(self.gridLayoutWidget)
         self.label.setObjectName("label")
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
-        self.lineEdit = QtGui.QLineEdit(self.gridLayoutWidget)
-        self.lineEdit.setObjectName("lineEdit")
-        self.gridLayout.addWidget(self.lineEdit, 0, 1, 1, 1)
         self.lineEdit_2 = QtGui.QLineEdit(self.gridLayoutWidget)
         self.lineEdit_2.setObjectName("lineEdit_2")
         self.gridLayout.addWidget(self.lineEdit_2, 2, 1, 1, 1)
         self.lineEdit_3 = QtGui.QLineEdit(self.gridLayoutWidget)
         self.lineEdit_3.setObjectName("lineEdit_3")
         self.gridLayout.addWidget(self.lineEdit_3, 3, 1, 1, 1)
-        self.lineEdit_4 = QtGui.QLineEdit(self.gridLayoutWidget)
-        self.lineEdit_4.setObjectName("lineEdit_4")
-        self.gridLayout.addWidget(self.lineEdit_4, 4, 1, 1, 1)
         self.lineEdit_5 = QtGui.QLineEdit(self.gridLayoutWidget)
         self.lineEdit_5.setObjectName("lineEdit_5")
         self.gridLayout.addWidget(self.lineEdit_5, 5, 1, 1, 1)
+        self.lineEdit_4 = QtGui.QLineEdit(self.gridLayoutWidget)
+        self.lineEdit_4.setObjectName("lineEdit_4")
+        self.gridLayout.addWidget(self.lineEdit_4, 4, 1, 1, 1)
+        self.pushButton = QtGui.QPushButton(self.gridLayoutWidget)
+        self.pushButton.setObjectName("pushButton")
+        self.gridLayout.addWidget(self.pushButton, 7, 0, 1, 2)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -61,6 +63,7 @@ class Ui_Form(object):
         self.label_4.setText(QtGui.QApplication.translate("Form", "Access token:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("Form", "Consumer key:", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("Form", "Owner:", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButton.setText(QtGui.QApplication.translate("Form", "PushButton", None, QtGui.QApplication.UnicodeUTF8))
 
 
 class ControlWindow(QtGui.QMainWindow):

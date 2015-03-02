@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>401</width>
-    <height>303</height>
+    <height>272</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,47 +19,47 @@
      <x>10</x>
      <y>10</y>
      <width>381</width>
-     <height>281</height>
+     <height>251</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
     <item row="3" column="0">
      <widget class="QLabel" name="label_3">
       <property name="text">
-       <string>Consumer secret</string>
+       <string>Consumer secret:</string>
       </property>
      </widget>
     </item>
     <item row="5" column="0">
      <widget class="QLabel" name="label_5">
       <property name="text">
-       <string>Access token secret</string>
+       <string>Access token secret:</string>
       </property>
      </widget>
     </item>
     <item row="4" column="0">
      <widget class="QLabel" name="label_4">
       <property name="text">
-       <string>Access token</string>
+       <string>Access token:</string>
       </property>
      </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLineEdit" name="lineEdit"/>
     </item>
     <item row="2" column="0">
      <widget class="QLabel" name="label_2">
       <property name="text">
-       <string>Consumer key</string>
+       <string>Consumer key:</string>
       </property>
      </widget>
     </item>
     <item row="0" column="0">
      <widget class="QLabel" name="label">
       <property name="text">
-       <string>Owner</string>
+       <string>Owner:</string>
       </property>
      </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QLineEdit" name="lineEdit"/>
     </item>
     <item row="2" column="1">
      <widget class="QLineEdit" name="lineEdit_2"/>
@@ -67,11 +67,18 @@
     <item row="3" column="1">
      <widget class="QLineEdit" name="lineEdit_3"/>
     </item>
+    <item row="5" column="1">
+     <widget class="QLineEdit" name="lineEdit_5"/>
+    </item>
     <item row="4" column="1">
      <widget class="QLineEdit" name="lineEdit_4"/>
     </item>
-    <item row="5" column="1">
-     <widget class="QLineEdit" name="lineEdit_5"/>
+    <item row="7" column="0" colspan="2">
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
