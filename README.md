@@ -1,5 +1,5 @@
 iFollowers
-----------
+==========
 
 :eyes: Keep track of your Twitter followers.
 
