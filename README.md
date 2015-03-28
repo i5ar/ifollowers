@@ -1,7 +1,7 @@
 iFollowers
 ==========
 
-:eyes: Keep track of your Twitter followers.
+:eyes: Followers tracking script for Twitter.
 
 > This script was made for fun in my spare time.
 
