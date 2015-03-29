@@ -77,10 +77,6 @@ I take no responsibility or liability for any damages including damages arising 
 
 BSD 3-Clause
 
-Copyright (c) 2014, iSar
-
-All rights reserved.
-
 [Python3]: https://www.python.org/
 [pip]: https://pip.pypa.io/
 [Tweepy]: http://www.tweepy.org/
