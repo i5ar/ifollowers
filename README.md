@@ -71,8 +71,6 @@ I take no responsibility or liability for any damages including damages arising 
 - Binary;
 - Style;
 
-> I don't have 10000 Twitter followers, if you do have that amount of folks in your list, please let me know if everything works fine.
-
 [Python3]: https://www.python.org/
 [pip]: https://pip.pypa.io/
 [Tweepy]: http://www.tweepy.org/
