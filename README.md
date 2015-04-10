@@ -1,11 +1,11 @@
 iFollowers
 ==========
 
-:eyes: Followers tracking script for Twitter.
+:eyes: A *followers* tracking script for Twitter.
 
 > This script was made for fun in my spare time.
 
-When you have a lage number of unfollowers there must be a reason! This script will help you to detect them.
+When you have a lage number of *unfollowers* there must be a reason! This script will help you to detect them.
 
 ### Installation and required packages
 
