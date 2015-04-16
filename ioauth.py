@@ -41,8 +41,6 @@ print(isar_dynamic_oauth.access_token_secret)
 isar_dynamic_oauth.printargs()
 '''
 
-version = '0.0.4'
-
 '''
 if __name__ == '__main__':
     Main()

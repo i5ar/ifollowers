@@ -40,6 +40,10 @@ I take no responsibility or liability for any damages including damages arising 
 > Please, come back to check new and awesome releases! Any contribution or suggestion will be greatly appreciated.
 
 ### Changelog
+*Release Version 0.0.5*
+*Release Date - 16th April, 2015*
+
+- Style.
 
 *Release Version 0.0.4*
 *Release Date - 28th December, 2014*
@@ -69,7 +73,6 @@ I take no responsibility or liability for any damages including damages arising 
 
 - Database;
 - Binary;
-- Style;
 
 [Python3]: https://www.python.org/
 [pip]: https://pip.pypa.io/
