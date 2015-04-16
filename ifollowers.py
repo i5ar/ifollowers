@@ -168,7 +168,7 @@ html_header = '<!DOCTYPE html>' \
               '<title>iFollowers</title>' \
               '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />' \
               '<meta name="A followers tracking script" content="" />' \
-              '<link rel="stylesheet" type="text/css" href="'+ cwd +'\\_build\\html\\css\\bootstrap.css" />' \
+              '<link rel="stylesheet" type="text/css" href="'+ cwd +'\\_build\\html\\_static\\css\\bootstrap.css" />' \
               '</head>' \
               '<body>'
 html_footer = '</body>' \
