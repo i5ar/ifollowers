@@ -26,7 +26,6 @@ $RECYCLE.BIN/
 *.egg
 *.egg-info
 dist/
-build/
 eggs/
 parts/
 var/
@@ -70,8 +69,13 @@ __pycache__/
 ## Static markup
 #############
 
-# Subfolders
-_build/
+# Build subfolder
+_build/markdown/*
+_build/dat/*
+_build/html/*
+!_build/html/_static/
+
+# Old subfolder
 old/
 
 # Private OAuth files

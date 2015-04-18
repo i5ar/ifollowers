@@ -111,13 +111,6 @@ with open("_build\\markdown\\iFollowers.md", "wt") as out_md:
     head( 'Last followers', last_ls )
     followers( last_ls )
 
-''' maybe to remove
-# Read
-with open("_build\\markdown\\iFollowers.md", "rt") as in_md:
-    my_test = in_md.read()
-    split_list_last = my_test.split()
-'''
-
 # Get a list of files in markdown directory and sort last modified
 dic = {}
 for file in glob.glob("_build\\dat\\*.dat"):
