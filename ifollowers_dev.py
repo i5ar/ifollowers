@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#! /usr/bin/env python
 
 ifollowers_info = {
     "name": "ifollowers",
@@ -111,7 +111,7 @@ with open("_build\\markdown\\iFollowers.md", "wt") as out_md:
     head( 'Last followers', last_ls )
     followers( last_ls )
 
-# Get a list of files in markdown directory and sort last modified
+# Get a list of files in data directory and sort last modified
 dic = {}
 for file in glob.glob("_build\\dat\\*.dat"):
     key = int(os.path.getmtime(file))   # Key
@@ -124,7 +124,7 @@ for key in dic.keys():
 sorted_ls = sorted(ls)
 print('lengh: '+str(len(ls)))
 
-if len(ls) > 1 :
+if len(ls) > 1:
     # Dictionary from list items
     first = (dic[sorted_ls[0]]) # '_build\markdown\2014-12-27T151122.md'
     last = (dic[sorted_ls[-1]]) # '_build\markdown\2014-12-27T151245.md'
@@ -159,25 +159,45 @@ if len(ls) > 1 :
         head( 'Unfollowers', unfollowers_ls )
         followers( unfollowers_ls )
 
-# Write last followers markdown list
-with open("_build\\markdown\\last.md", "wt") as out_md:
-    head( 'Last followers', last_ls )
-    followers( last_ls )
+# Check if there are at least 2 data files to compare in order to list first followers, new followers and unfollowers
+if len(ls) > 1:
+    # Write last followers markdown list
+    with open("_build\\markdown\\last.md", "wt") as out_md:
+        head( 'Last followers', last_ls )
+        followers( last_ls )
 
-# Write first followers markdown list
-with open("_build\\markdown\\first.md", "wt") as out_md:
-    head( 'First followers', first_ls )
-    followers( first_ls )
+    # Write first followers markdown list
+    with open("_build\\markdown\\first.md", "wt") as out_md:
+        head( 'First followers', first_ls )
+        followers( first_ls )
 
-# Write new followers markdown list
-with open("_build\\markdown\\new.md", "wt") as out_md:
-    head( 'New followers', new_followers_ls )
-    followers( new_followers_ls )
+    # Write new followers markdown list
+    with open("_build\\markdown\\new.md", "wt") as out_md:
+        head( 'New followers', new_followers_ls )
+        followers( new_followers_ls )
 
-# Write unfollowers markdown list
-with open("_build\\markdown\\un.md", "wt") as out_md:
-    head( 'Unfollowers', unfollowers_ls )
-    followers( unfollowers_ls )
+    # Write unfollowers markdown list
+    with open("_build\\markdown\\un.md", "wt") as out_md:
+        head( 'Unfollowers', unfollowers_ls )
+        followers( unfollowers_ls )
+
+else:
+    # Write empty last followers markdown list
+    with open("_build\\markdown\\last.md", "wt") as out_md:
+        head( 'Followers', last_ls )
+        followers( last_ls )
+
+    # Write empty first followers markdown list
+    with open("_build\\markdown\\first.md", "wt") as out_md:
+        out_md.write('')
+
+    # Write empty new followers markdown list
+    with open("_build\\markdown\\new.md", "wt") as out_md:
+        out_md.write('')
+
+    # Write empty unfollowers markdown list
+    with open("_build\\markdown\\un.md", "wt") as out_md:
+        out_md.write('')
 
 # Get current working directory
 cwd = os.getcwd()
