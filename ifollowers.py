@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#!/usr/bin/env python
 
 ifollowers_info = {
     "name": "ifollowers",
