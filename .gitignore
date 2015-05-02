@@ -60,9 +60,7 @@ pip-log.txt
 #############
 
 # Python file caches
-__pycache__/
-*/__pycache__/
-*/*/__pycache__/
+*.pyc
 
 
 #############
@@ -75,9 +73,16 @@ _build/dat/*
 _build/html/*
 !_build/html/_static/
 
+
+#############
+## Private files
+#############
+
 # Old subfolder
 old/
 
 # Private OAuth files
-ioauth_isar.py
-main.py
+statioauth.py
+
+# Private database file
+*.db

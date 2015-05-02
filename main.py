@@ -3,7 +3,7 @@
 ifollowers_info = {
     "name": "ifollowers",
     "author": "iSar",
-    "version": (0, 0, 5),
+    "version": (0, 0, 6),
     "python": (3, 4),
     "markdown": (2, 5, 2),
     "tweepy": (3, 1, 0),
@@ -14,60 +14,72 @@ import time
 import glob
 import markdown
 import tweepy
+import sqlite3
 
-'''
-# Dynamic Twitter OAuth
-import ioauth
+owner = ''
+# Check database
+if os.path.isfile('ifollowers.db'):
+    # Connect to the database and show the last account
+    conn = sqlite3.connect('ifollowers.db')
+    c = conn.cursor()
+    c.execute("SELECT * FROM ifolloauth")
+    fetch = c.fetchall()
+    # Get first value of last row
+    owner = fetch[-1][0]
+    conn.close()
+    newner = input('Enter \''+ owner +'\' or a new Owner: ')
+else:
+    newner = input('Owner: ')
 
-owner = input('Owner: ')
-consumer_key = input('Consumer Key: ')
-consumer_secret = input('Consumer Secret: ')
-access_token = input('Access Token: ')
-access_token_secret = input('Access Token Secret: ')
+if(newner != owner):
 
-isar_dynamic_oauth = ioauth.DynamicTwitterOAuth(
-    owner,
-    consumer_key,
-    consumer_secret,
-    access_token,
-    access_token_secret )
-'''
+    # Dynamic Twitter OAuth
+    import ioauth
 
-# Static Twitter OAuth
-import ioauth_isar
+    isar_dynamic_oauth = ioauth.DynamicTwitterOAuth()
 
-isar_static_oauth = ioauth_isar.StaticTwitterOAuth()
+    #owner = isar_dynamic_oauth.owner
+    consumer_key = isar_dynamic_oauth.consumer_key
+    consumer_secret = isar_dynamic_oauth.consumer_secret
+    access_token = isar_dynamic_oauth.access_token
+    access_token_secret = isar_dynamic_oauth.access_token_secret
 
-owner = isar_static_oauth.owner
-consumer_key = isar_static_oauth.consumer_key
-consumer_secret = isar_static_oauth.consumer_secret
-access_token = isar_static_oauth.access_token
-access_token_secret = isar_static_oauth.access_token_secret
+    # Database Twitter OAuth
+    conn = sqlite3.connect('ifollowers.db')
+    c = conn.cursor()
+    # Create table if not exists
+    c.execute("CREATE TABLE if not exists ifolloauth ('Owner' TEXT, 'Consumer Key' TEXT, 'Consumer Secret' TEXT, 'Access Token' TEXT, 'Access Token Secret' TEXT)")
+    # Insert a row of data
+    c.execute("INSERT INTO ifolloauth ('Owner', 'Consumer Key', 'Consumer Secret', 'Access Token', 'Access Token Secret')"
+              "VALUES (?, ?, ?, ?, ?)", (newner, consumer_key, consumer_secret, access_token, access_token_secret))
+    conn.commit()
+    conn.close()
+
+elif(os.path.isfile('ifollowers.db') and newner == owner):
+    conn = sqlite3.connect('ifollowers.db')
+    c = conn.cursor()
+    c.execute("SELECT * FROM ifolloauth")
+    fetch = c.fetchall()
+    # Get values from database
+    owner = fetch[-1][0]
+    consumer_key = fetch[-1][1]
+    consumer_secret = fetch[-1][2]
+    access_token = fetch[-1][3]
+    access_token_secret = fetch[-1][4]
+
+    conn.close()
+
+else:
+    print('Argh!')
 
 # Tweepy
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
-'''
-# Print followers
-for follower in api.followers_ids(owner):
-    print(api.get_user(follower).screen_name)
-'''
-
 last_ls = []
 for follower in tweepy.Cursor(api.followers, screen_name=owner).items():
     last_ls.append(follower.screen_name)
-    #print (follower.screen_name)
-
-#last_ls = ['Leonardo', 'Raffaello', 'Donatello', 'Michelangelo']
-
-'''
-# Get Specific markdown file in case you'd like a specific last_ls
-with open("_build\\markdown\\2014-12-27T175811.md", "rt") as in_md:
-    last_followers = in_md.read()
-    last_ls = last_followers.split()
-'''
 
 # Make directories if they do not exist
 if not os.path.exists('_build\\markdown'):
@@ -77,13 +89,12 @@ if not os.path.exists('_build\\html'):
 if not os.path.exists('_build\\dat'):
     os.makedirs('_build\\dat')
 
-# Representing a time [4]
-# [4]: http://bit.ly/1A2stqn
 date_name = time.strftime("%Y-%m-%dT%H%M%S")
 only_date_name = time.strftime("%Y-%m-%d")
 date_name_path = '_build\\dat\\'+date_name+'.dat'
 
 def head( header, ls ):
+    '''Write markdown head'''
     hyphens = len(header)
     out_md.write(header + ' <i>'+str(len(ls))+'</i>\n')
     i = 0
@@ -93,20 +104,20 @@ def head( header, ls ):
     out_md.write('\n\n')
 
 def followers( ls ):
+    '''Write markdown list items'''
     i = 0
     for account in ls:
         i += 1
         out_md.write(str(i) +'. ['+ account +'](https://twitter.com/'+ account +')\n')
     out_md.write('\n')
 
-# File Input Output [1]
-# [1]: http://bit.ly/1sWobRM
-with open(date_name_path, "wt") as out_md: # "_build/markdown/iFollowers.md"
+# Write last followers in data file
+with open(date_name_path, "wt") as out_md:
     for i in last_ls:
         out_md.write(i+'\n')
     out_md.write('\n')
 
-# Write last followers
+# Write last followers in markdown file
 with open("_build\\markdown\\iFollowers.md", "wt") as out_md:
     head( 'Last followers', last_ls )
     followers( last_ls )
@@ -116,25 +127,20 @@ dic = {}
 for file in glob.glob("_build\\dat\\*.dat"):
     key = int(os.path.getmtime(file))   # Key
     dic[key] = file                     # Value
-#print(dic)
 
 ls = []
 for key in dic.keys():
     ls.append(key)
 sorted_ls = sorted(ls)
-print('lengh: '+str(len(ls)))
 
 if len(ls) > 1:
-    # Dictionary from list items
-    first = (dic[sorted_ls[0]]) # '_build\markdown\2014-12-27T151122.md'
-    last = (dic[sorted_ls[-1]]) # '_build\markdown\2014-12-27T151245.md'
-    #print(str(len(ls)))
-    #print('First static page: '+first)
-    #print('Last static page: '+last)
+    # Get first data file from list
+    first = dic[sorted_ls[0]]
+    # Get last data file from list
+    last = dic[sorted_ls[-1]]
     # Opening the older markdown file to read the old followers
-    with open(first, "rt") as in_md: # "_build\markdown\2014-12-27_15-16.md"
+    with open(first, "rt") as in_md:
         first_followers = in_md.read()
-        #print(first_followers)
 
     with open("_build\\markdown\\iFollowers.md", "at") as out_md:
 
@@ -215,8 +221,7 @@ html_header = '<!DOCTYPE html>' \
 html_footer = '</body>' \
               '</html>'
 
-# Markdown Details [2]
-# [2]: http://bit.ly/1weDnEg
+# Markdown Details
 with open("_build\\markdown\\last.md", 'rt') as in_md:
     last = in_md.read()
     html_last = markdown.markdown(last)
@@ -229,13 +234,6 @@ with open("_build\\markdown\\new.md", 'rt') as in_md:
 with open("_build\\markdown\\un.md", 'rt') as in_md:
     un = in_md.read()
     html_un = markdown.markdown(un)
-
-'''
-#in_md = codecs.open("_build/markdown/ifollowers.md", mode="r", encoding="utf-8")
-with open("_build\\markdown\\iFollowers.md", 'rt') as in_md:
-    iFollowers = in_md.read()
-    html_page = markdown.markdown(iFollowers)
-'''
 
 # Build the page
 html_page = '<div class="col-md-3">'+ html_last +'</div>' \
