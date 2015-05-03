@@ -2,7 +2,6 @@
 
 # Twitter Application Management [1]
 # [1]: https://apps.twitter.com/
-
 class DynamicTwitterOAuth(object):
     '''Define Dynamic OAuth '''
     def __init__(self):
@@ -19,9 +18,7 @@ class DynamicTwitterOAuth(object):
         '''Print'''
         print(self.static_isar)
 
-
-
-'''
+'''Dynamic Twitter OAuth
 isar_dynamic_oauth = DynamicTwitterOAuth(
     '', # Owner
     '', # Consumer Key

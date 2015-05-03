@@ -81,24 +81,20 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
-'''Print followers
+'''Print followers slow method
+last_ls = []
 for follower in api.followers_ids(owner):
+    last_ls.append(api.get_user(follower).screen_name)
     print(api.get_user(follower).screen_name)
 '''
 
 last_ls = []
 for follower in tweepy.Cursor(api.followers, screen_name=owner).items():
     last_ls.append(follower.screen_name)
-    #print (follower.screen_name)
+    #print(follower.screen_name)
 
 '''Debugging list
 last_ls = ['Leonardo', 'Raffaello', 'Donatello', 'Michelangelo']
-'''
-
-'''Get Specific markdown file in case you'd like a specific last_ls
-with open("_build\\markdown\\2014-12-27T175811.md", "rt") as in_md:
-    last_followers = in_md.read()
-    last_ls = last_followers.split()
 '''
 
 # Make directories if they do not exist
@@ -139,7 +135,7 @@ with open(date_name_path, "wt") as out_md:
         out_md.write(i+'\n')
     out_md.write('\n')
 
-#Write last followers in markdown file
+# Write last followers in markdown file
 with open("_build\\markdown\\last.md", "wt") as out_md:
     head( 'Last followers', last_ls )
     followers( last_ls )
