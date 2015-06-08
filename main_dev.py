@@ -16,6 +16,7 @@ import markdown
 import tweepy
 import sqlite3
 import ioauth
+import shutil
 
 owner = ''
 # Check database
@@ -185,6 +186,14 @@ if len(ls) > 1:
                 unfollowers_ls.append(first)
         head( 'Unfollowers', unfollowers_ls )
         followers( unfollowers_ls )
+
+    # TODO create an 'old' folder if not exist
+    # Move first data file to old folder
+    root, ending = os.path.split(first_data)    # '_build\dat', '2015-06-08T140627.dat'
+    #print(os.path.dirname(first_data))         # '_build\dat'
+    #print(os.path.basename(first_data))        # '2015-06-08T140627.dat'
+    old_folder_path = root+'\\old\\'+ending
+    shutil.move(first_data, old_folder_path)
 
 else:
     # Write last followers markdown list
