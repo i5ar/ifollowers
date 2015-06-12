@@ -159,8 +159,10 @@ if len(ls) > 1:
     first_data = dic[sorted_ls[0]]
     # Get last data file from list
     last_data = dic[sorted_ls[-1]]
+    # Get previous data file from list
+    previous_data = dic[sorted_ls[-2]]
     # Opening the older markdown file to read the old followers
-    with open(first_data, "rt") as in_md:
+    with open(previous_data, "rt") as in_md:    # Change "previous_data" to "first_data" in order to have a larger gap
         first_followers = in_md.read()
 
     # Write first followers markdown list
@@ -186,15 +188,17 @@ if len(ls) > 1:
                 unfollowers_ls.append(first)
         head( 'Unfollowers', unfollowers_ls )
         followers( unfollowers_ls )
-
-    # TODO create an 'old' folder if not exist
-    # Move first data file to old folder
+    '''
+    # Make "old" directory if it doesn't exist
+    if not os.path.exists('_build\\dat\\old'):
+        os.makedirs('_build\\dat\\old')
+    # Move first data file to "old" directory
     root, ending = os.path.split(first_data)    # '_build\dat', '2015-06-08T140627.dat'
     #print(os.path.dirname(first_data))         # '_build\dat'
     #print(os.path.basename(first_data))        # '2015-06-08T140627.dat'
     old_folder_path = root+'\\old\\'+ending
     shutil.move(first_data, old_folder_path)
-
+    '''
 else:
     # Write last followers markdown list
     with open("_build\\markdown\\last.md", "wt") as out_md:
