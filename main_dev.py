@@ -161,8 +161,9 @@ if len(ls) > 1:
     last_data = dic[sorted_ls[-1]]
     # Get previous data file from list
     previous_data = dic[sorted_ls[-2]]
-    # Opening the older markdown file to read the old followers
-    with open(previous_data, "rt") as in_md:    # Change "previous_data" to "first_data" in order to have a larger gap
+
+    # Opening the older markdown file to read the first followers
+    with open(previous_data, "rt") as in_md:
         first_followers = in_md.read()
 
     # Write first followers markdown list
@@ -217,9 +218,6 @@ else:
     with open("_build\\markdown\\un.md", "wt") as out_md:
         out_md.write('')
 
-# Get current working directory
-cwd = os.getcwd()
-
 # Template
 html_header = '<!DOCTYPE html>' \
               '<html>' \
@@ -227,7 +225,7 @@ html_header = '<!DOCTYPE html>' \
               '<title>iFollowers</title>' \
               '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />' \
               '<meta name="A followers tracking script" content="" />' \
-              '<link rel="stylesheet" type="text/css" href="'+ cwd +'\\_build\\html\\_static\\css\\bootstrap.css" />' \
+              '<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />' \
               '</head>' \
               '<body>'
 html_footer = '</body>' \
@@ -253,8 +251,10 @@ html_page = '<div class="col-md-3">'+ html_last +'</div>' \
             '<div class="col-md-3">'+ html_new +'</div>' \
             '<div class="col-md-3">'+ html_un +'</div>'
 
-with open("_build\\html\\"+only_date_name+"_ifollowers.html", "wt") as out_html:
+with open("_build\\html\\"+only_date_name+".html", "wt") as out_html:
     out_html.write(html_header + html_page + html_footer)
 
+# Get current working directory
+cwd = os.getcwd()
 # Open the file in a browser
-os.system(cwd + "\\_build\\html\\"+only_date_name+"_ifollowers.html")
+os.system(cwd + "\\_build\\html\\"+only_date_name+".html")
