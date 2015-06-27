@@ -3,7 +3,7 @@
 ifollowers_info = {
     "name": "iFollowers",
     "author": "iSar",
-    "version": (0, 0, 6),
+    "version": (0, 0, 7),
     "python": (3, 4),
     "markdown": (2, 5, 2),
     "tweepy": (3, 1, 0),
@@ -41,6 +41,7 @@ if(newner != owner):
     # Dynamic Twitter OAuth
     isar_dynamic_oauth = ioauth.DynamicTwitterOAuth()
 
+    #owner = isar_dynamic_oauth.owner
     consumer_key = isar_dynamic_oauth.consumer_key
     consumer_secret = isar_dynamic_oauth.consumer_secret
     access_token = isar_dynamic_oauth.access_token
@@ -80,7 +81,6 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
-# List followers
 last_ls = []
 for follower in tweepy.Cursor(api.followers, screen_name=owner).items():
     last_ls.append(follower.screen_name)
@@ -93,7 +93,7 @@ if not os.path.exists('_build\\html'):
 if not os.path.exists('_build\\dat'):
     os.makedirs('_build\\dat')
 
-# Time access
+# Time access and conversions
 date_name = time.strftime("%Y-%m-%dT%H%M%S")
 only_date_name = time.strftime("%Y-%m-%d")
 date_name_path = '_build\\dat\\'+date_name+'.dat'
@@ -145,14 +145,19 @@ if len(ls) > 1:
     first_data = dic[sorted_ls[0]]
     # Get last data file from list
     last_data = dic[sorted_ls[-1]]
-    # Opening the older markdown file to read the old followers
-    with open(first_data, "rt") as in_md:
+    # Get previous data file from list
+    previous_data = dic[sorted_ls[-2]]
+
+    # Opening the older markdown file to read the first followers
+    with open(previous_data, "rt") as in_md:
         first_followers = in_md.read()
+
     # Write first followers markdown list
     with open("_build\\markdown\\first.md", "wt") as out_md:
         first_ls = first_followers.split()
         head( 'First followers', first_ls )
         followers( first_ls )
+
     # Write new followers markdown list
     with open("_build\\markdown\\new.md", "wt") as out_md:
         new_followers_ls = []
@@ -161,6 +166,7 @@ if len(ls) > 1:
                 new_followers_ls.append(last)
         head( 'New followers', new_followers_ls )
         followers( new_followers_ls )
+
     # Write unfollowers markdown list
     with open("_build\\markdown\\un.md", "wt") as out_md:
         unfollowers_ls = []
@@ -169,23 +175,24 @@ if len(ls) > 1:
                 unfollowers_ls.append(first)
         head( 'Unfollowers', unfollowers_ls )
         followers( unfollowers_ls )
+
 else:
     # Write last followers markdown list
     with open("_build\\markdown\\last.md", "wt") as out_md:
         head( 'Followers', last_ls )
         followers( last_ls )
+
     # Write empty first followers markdown list
     with open("_build\\markdown\\first.md", "wt") as out_md:
         out_md.write('')
+
     # Write empty new followers markdown list
     with open("_build\\markdown\\new.md", "wt") as out_md:
         out_md.write('')
+
     # Write empty unfollowers markdown list
     with open("_build\\markdown\\un.md", "wt") as out_md:
         out_md.write('')
-
-# Get current working directory
-cwd = os.getcwd()
 
 # Template
 html_header = '<!DOCTYPE html>' \
@@ -194,7 +201,7 @@ html_header = '<!DOCTYPE html>' \
               '<title>iFollowers</title>' \
               '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />' \
               '<meta name="A followers tracking script" content="" />' \
-              '<link rel="stylesheet" type="text/css" href="'+ cwd +'\\_build\\html\\_static\\css\\bootstrap.css" />' \
+              '<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />' \
               '</head>' \
               '<body>'
 html_footer = '</body>' \
@@ -220,8 +227,10 @@ html_page = '<div class="col-md-3">'+ html_last +'</div>' \
             '<div class="col-md-3">'+ html_new +'</div>' \
             '<div class="col-md-3">'+ html_un +'</div>'
 
-with open("_build\\html\\"+only_date_name+"_ifollowers.html", "wt") as out_html:
+with open("_build\\html\\"+only_date_name+".html", "wt") as out_html:
     out_html.write(html_header + html_page + html_footer)
 
+# Get current working directory
+cwd = os.getcwd()
 # Open the file in a browser
-os.system(cwd + "\\_build\\html\\"+only_date_name+"_ifollowers.html")
+os.system(cwd + "\\_build\\html\\"+only_date_name+".html")

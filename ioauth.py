@@ -17,31 +17,3 @@ class DynamicTwitterOAuth(object):
     def printargs(self):
         '''Print'''
         print(self.static_isar)
-
-'''Dynamic Twitter OAuth
-isar_dynamic_oauth = DynamicTwitterOAuth(
-    '', # Owner
-    '', # Consumer Key
-    '', # Consumer Secret
-    '', # Access Token
-    '') # Access Token Secret
-
-owner = isar_dynamic_oauth.owner
-consumer_key = isar_dynamic_oauth.consumer_key
-consumer_secret = isar_dynamic_oauth.consumer_secret
-access_token = isar_dynamic_oauth.access_token
-access_token_secret = isar_dynamic_oauth.access_token_secret
-
-print(isar_dynamic_oauth.owner)
-print(isar_dynamic_oauth.consumer_key)
-print(isar_dynamic_oauth.consumer_secret)
-print(isar_dynamic_oauth.access_token)
-print(isar_dynamic_oauth.access_token_secret)
-
-isar_dynamic_oauth.printargs()
-'''
-
-'''
-if __name__ == '__main__':
-    Main()
-'''

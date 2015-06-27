@@ -56,33 +56,11 @@ pip-log.txt
 
 
 #############
-## Python detritus
+#############
 #############
 
-# Python file caches
-*.pyc
+# Private builds
+_build/
 
-
-#############
-## Static markup
-#############
-
-# Build subfolder
-_build/markdown/*
-_build/dat/*
-_build/html/*
-!_build/html/_static/
-
-
-#############
-## Private files
-#############
-
-# Old subfolder
-old/
-
-# Private OAuth files
-statioauth.py
-
-# Private database file
+# Private database
 *.db

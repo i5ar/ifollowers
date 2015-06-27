@@ -3,7 +3,7 @@
 ifollowers_info = {
     "name": "iFollowers",
     "author": "iSar",
-    "version": (0, 0, 6),
+    "version": (0, 0, 8),
     "python": (3, 4),
     "markdown": (2, 5, 2),
     "tweepy": (3, 1, 0),
@@ -16,8 +16,8 @@ import markdown
 import tweepy
 import sqlite3
 import ioauth
-import shutil
 
+#TODO excerpt if no database and Enter input
 owner = ''
 # Check database
 if os.path.isfile('ifollowers.db'):
@@ -28,26 +28,26 @@ if os.path.isfile('ifollowers.db'):
     fetch = c.fetchall()
     # Get first value of last row
     owner = fetch[-1][0]
+    consumer_key = fetch[-1][1]
+    consumer_secret = fetch[-1][2]
+    access_token = fetch[-1][3]
+    access_token_secret = fetch[-1][4]
     conn.close()
-    newner = input('Enter \''+ owner +'\' or a new Owner: ')
+    newner = input('Please enter \"'+ owner +'\" or a new Owner: ') or owner
 else:
     print('Please go to https://apps.twitter.com/ to Create New App;')
     print('Open Permissions tab and check Read only;')
     print('Open Keys and Access Token tab to copy your Application Settings.')
-
     newner = input('Owner: ')
 
 if(newner != owner):
-
     # Dynamic Twitter OAuth
     isar_dynamic_oauth = ioauth.DynamicTwitterOAuth()
-
     #owner = isar_dynamic_oauth.owner
     consumer_key = isar_dynamic_oauth.consumer_key
     consumer_secret = isar_dynamic_oauth.consumer_secret
     access_token = isar_dynamic_oauth.access_token
     access_token_secret = isar_dynamic_oauth.access_token_secret
-
     # Database Twitter OAuth
     conn = sqlite3.connect('ifollowers.db')
     c = conn.cursor()
@@ -58,24 +58,8 @@ if(newner != owner):
               "VALUES (?, ?, ?, ?, ?)", (newner, consumer_key, consumer_secret, access_token, access_token_secret))
     conn.commit()
     conn.close()
-
-elif(os.path.isfile('ifollowers.db') and newner == owner):
-    conn = sqlite3.connect('ifollowers.db')
-    c = conn.cursor()
-    c.execute("SELECT * FROM ifolloauth")
-    fetch = c.fetchall()
-    # Get values from database
-    owner = fetch[-1][0]
-    consumer_key = fetch[-1][1]
-    consumer_secret = fetch[-1][2]
-    access_token = fetch[-1][3]
-    access_token_secret = fetch[-1][4]
-
-    conn.close()
-
-#TODO excerpt if no database and Enter input
-else:
-    print('Argh!')
+elif(newner == ''):
+    print('You must enter a valid owner')
 
 # Tweepy
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -189,7 +173,8 @@ if len(ls) > 1:
                 unfollowers_ls.append(first)
         head( 'Unfollowers', unfollowers_ls )
         followers( unfollowers_ls )
-    '''
+
+    '''Move data to "old" directory
     # Make "old" directory if it doesn't exist
     if not os.path.exists('_build\\dat\\old'):
         os.makedirs('_build\\dat\\old')
