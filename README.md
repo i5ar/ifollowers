@@ -40,38 +40,41 @@ I take no responsibility or liability for any damages including damages arising 
 > Please, come back to check new and awesome releases! Any contribution or suggestion will be greatly appreciated.
 
 ### Changelog
+*Release Version 0.0.8*
+*Release Date - 05th July, 2015*
+
+- Add OAuth database
+
 *Release Version 0.0.5*
 *Release Date - 16th April, 2015*
 
-- Style.
+- Add style.
 
 *Release Version 0.0.4*
 *Release Date - 28th December, 2014*
 
 - Add OAuth modules;
-- Change *.md* file extension to *.dat* to store IDs.
+- Change `.md` file extension to `.dat` to store IDs.
 
 *Release Version 0.0.3*
 *Release Date - 27th December, 2014*
 
 - Add *Tweepy* package;
 - Remove *BeautifulSoup* package;
-- Remove *icleaner.py* to rename static pages.
-
+- Remove `icleaner.py` to rename static pages.
 
 *Release Version 0.0.2*
 *Release Date - 22th December, 2014*
 
-- Add *icleaner.py* to rename static pages with the static page date.
+- Add `icleaner.py` to rename static pages with the static page date.
 
 *Release Version 0.0.1*
 *Release Date - 21th December, 2014*
 
- - Having some fun with *BeautifulSoup* coding *ifollowers.py*.
+ - Having some fun with *BeautifulSoup* coding `ifollowers.py`.
 
 ### Todo
 
-- Database;
 - Binary;
 
 [Python3]: https://www.python.org/
