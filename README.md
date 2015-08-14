@@ -11,10 +11,10 @@ When you have a lage number of *unfollowers* there must be a reason! This script
 
 - Install <a href="https://www.python.org/" target="_blank">Python3</a> if not already in your operating system;
     - Install the PyPA recommended tool <a href="https://pip.pypa.io/" target="_blank">pip</a> for installing Python packages;
-        - Install <a href="https://pythonhosted.org/Markdown/" target="_blank">Markdown</a>;
+        - Install <a href="https://pythonhosted.org/Markdown/" target="_blank">Markdown</a>:
 
                 pip install markdown
-        - Install <a href="http://www.tweepy.org/" target="_blank">Tweepy</a>;
+        - Install <a href="http://www.tweepy.org/" target="_blank">Tweepy</a>:
 
                 pip install tweepy
 
