@@ -3,8 +3,8 @@
 ifollowers_info = {
     "name": "iFollowers",
     "author": "iSar",
-    "version": (0, 0, 8),
-    "python": (3, 4),
+    "version": (0, 1, 0),
+    "python": (3, 5),
     "markdown": (2, 5, 2),
     "tweepy": (3, 1, 0),
     "description": "Followers tracking script for Twitter" }
@@ -17,6 +17,7 @@ import tweepy
 import sqlite3
 import ioauth
 
+# TODO: excerpt if no database and Enter input
 owner = ''
 # Check database
 if os.path.isfile('ifollowers.db'):
@@ -42,7 +43,7 @@ else:
 if(newner != owner):
     # Dynamic Twitter OAuth
     isar_dynamic_oauth = ioauth.DynamicTwitterOAuth()
-    #owner = isar_dynamic_oauth.owner
+    # owner = isar_dynamic_oauth.owner
     consumer_key = isar_dynamic_oauth.consumer_key
     consumer_secret = isar_dynamic_oauth.consumer_secret
     access_token = isar_dynamic_oauth.access_token
@@ -65,9 +66,18 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
+# Print followers slow method
+# last_ls = []
+# for follower in api.followers_ids(owner):
+#     last_ls.append(api.get_user(follower).screen_name)
+#     print(api.get_user(follower).screen_name)
+
+
 last_ls = []
 for follower in tweepy.Cursor(api.followers, screen_name=owner).items():
     last_ls.append(follower.screen_name)
+    # print(follower.screen_name)
+
 
 # Make directories if they do not exist
 if not os.path.exists('_build\\markdown'):
@@ -77,7 +87,8 @@ if not os.path.exists('_build\\html'):
 if not os.path.exists('_build\\dat'):
     os.makedirs('_build\\dat')
 
-# Time access and conversions
+# Time access and conversions [1]
+# [1]: https://docs.python.org/3.0/library/time.html#time.strftime
 date_name = time.strftime("%Y-%m-%dT%H%M%S")
 only_date_name = time.strftime("%Y-%m-%d")
 date_name_path = '_build\\dat\\'+date_name+'.dat'
@@ -114,12 +125,13 @@ with open("_build\\markdown\\last.md", "wt") as out_md:
 # List data files
 dic = {}
 for file in glob.glob("_build\\dat\\*.dat"):
-    key = int(os.path.getmtime(file))
-    dic[key] = file
+    key = int(os.path.getmtime(file))   # Key
+    dic[key] = file                     # Value
 # List data files
 ls = []
 for key in dic.keys():
     ls.append(key)
+# Sort data files
 sorted_ls = sorted(ls)
 
 # Check if there are data files to compare in order to list first followers, new followers and unfollowers
@@ -158,6 +170,16 @@ if len(ls) > 1:
                 unfollowers_ls.append(first)
         head( 'Unfollowers', unfollowers_ls )
         followers( unfollowers_ls )
+
+    # Make "old" directory if it doesn't exist
+    # if not os.path.exists('_build\\dat\\old'):
+    #     os.makedirs('_build\\dat\\old')
+    # Move first data file to "old" directory
+    # root, ending = os.path.split(first_data)
+    # print(os.path.dirname(first_data))
+    # print(os.path.basename(first_data))
+    # old_folder_path = root+'\\old\\'+ending
+    # shutil.move(first_data, old_folder_path)
 
 else:
     # Write last followers markdown list

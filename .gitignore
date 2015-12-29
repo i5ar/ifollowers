@@ -56,11 +56,16 @@ pip-log.txt
 
 
 #############
+## SQLite
 #############
+
+# Private database
+*.db
+
+
+#############
+## Bootstrap
 #############
 
 # Private builds
 _build/
-
-# Private database
-*.db

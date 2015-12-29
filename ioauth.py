@@ -6,7 +6,7 @@ class DynamicTwitterOAuth(object):
     '''Define Dynamic OAuth '''
     def __init__(self):
         '''Initialize dynamic OAuth'''
-        #self.owner = input('Owner: ')
+        # self.owner = input('Owner: ')
         self.consumer_key = input('Consumer Key: ')
         self.consumer_secret = input('Consumer Secret: ')
         self.access_token = input('Access Token: ')

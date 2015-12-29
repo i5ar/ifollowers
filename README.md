@@ -20,7 +20,7 @@ When you have a lage number of *unfollowers* there must be a reason! This script
 
 ### Use
 
-Save the script [*ifollowers.py*](https://github.com/i5ar/ifollowers/blob/master/ifollowers.py) and the module [*ioauth.py*](https://github.com/i5ar/ifollowers/blob/master/ioauth.py) in the same directory, then run the script. It will list and save all your **Current followers** so next time you are going to run the script it will be able to list:
+Save the script [*main.py*](https://github.com/i5ar/ifollowers/blob/master/main.py) and the module [*ioauth.py*](https://github.com/i5ar/ifollowers/blob/master/ioauth.py) in the same directory, then run the script. It will list and save all your **Current followers** so next time you are going to run the script it will be able to list:
 - **Previous followers**;
 - **New followers**;
 - **Unfollowers**.
@@ -73,7 +73,7 @@ I take no responsibility or liability for any damages including damages arising 
 
  - Having some fun with *BeautifulSoup* coding `ifollowers.py`.
 
-### Todo
+### TODO
 
 - Binary;
 
@@ -82,5 +82,3 @@ I take no responsibility or liability for any damages including damages arising 
 [Tweepy]: http://www.tweepy.org/
 [BeautifulSoup4]: http://www.crummy.com/software/BeautifulSoup/
 [Markdown]: https://pythonhosted.org/Markdown/
-
-
