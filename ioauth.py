@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from builtins import input
 
 # Twitter Application Management [1]
 # [1]: https://apps.twitter.com/

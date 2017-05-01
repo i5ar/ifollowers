@@ -1,14 +1,5 @@
 #!/usr/bin/env python
-
-ifollowers_info = {
-    "name": "iFollowers",
-    "author": "iSar",
-    "version": (0, 1, 0),
-    "python": (3, 5),
-    "markdown": (2, 5, 2),
-    "tweepy": (3, 1, 0),
-    "description": "Followers tracking script for Twitter" }
-
+from builtins import input
 import os
 import time
 import glob
@@ -17,7 +8,16 @@ import tweepy
 import sqlite3
 import ioauth
 
-# TODO: excerpt if no database and Enter input
+ifollowers_info = {
+    "name": "iFollowers",
+    "author": "iSar",
+    "version": (0, 2, 0),
+    "python": [(2, 7), (3, 5)],
+    "markdown": (2, 5, 2),
+    "tweepy": (3, 1, 0),
+    "description": "Followers tracking script for Twitter" }
+
+# TODO: Except if no database and Enter input
 owner = ''
 # Check database
 if os.path.isfile('ifollowers.db'):
@@ -52,10 +52,29 @@ if(newner != owner):
     conn = sqlite3.connect('ifollowers.db')
     c = conn.cursor()
     # Create table if not exists
-    c.execute("CREATE TABLE if not exists ifolloauth ('Owner' TEXT, 'Consumer Key' TEXT, 'Consumer Secret' TEXT, 'Access Token' TEXT, 'Access Token Secret' TEXT)")
+    c.execute("CREATE TABLE if not exists ifolloauth (\
+        'Owner' TEXT,\
+        'Consumer Key' TEXT,\
+        'Consumer Secret' TEXT,\
+        'Access Token' TEXT,\
+        'Access Token Secret' TEXT)"
+    )
     # Insert a row of data
-    c.execute("INSERT INTO ifolloauth ('Owner', 'Consumer Key', 'Consumer Secret', 'Access Token', 'Access Token Secret')"
-              "VALUES (?, ?, ?, ?, ?)", (newner, consumer_key, consumer_secret, access_token, access_token_secret))
+    c.execute(
+        "INSERT INTO ifolloauth (\
+            'Owner',\
+            'Consumer Key',\
+            'Consumer Secret',\
+            'Access Token',\
+            'Access Token Secret')"
+        "VALUES (?, ?, ?, ?, ?)", (
+            newner,
+            consumer_key,
+            consumer_secret,
+            access_token,
+            access_token_secret
+        )
+    )
     conn.commit()
     conn.close()
 elif(newner == ''):
@@ -108,7 +127,8 @@ def followers( ls ):
     i = 0
     for account in ls:
         i += 1
-        out_md.write(str(i) +'. ['+ account +'](https://twitter.com/'+ account +')\n')
+        out_md.write(str(i) +'. ['+
+            account +'](https://twitter.com/'+ account +')\n')
     out_md.write('\n')
 
 # Write last followers in data file
@@ -134,7 +154,8 @@ for key in dic.keys():
 # Sort data files
 sorted_ls = sorted(ls)
 
-# Check if there are data files to compare in order to list first followers, new followers and unfollowers
+# Check if there are data files to compare in order to list
+# first followers, new followers and unfollowers
 if len(ls) > 1:
     # Get first data file from list
     first_data = dic[sorted_ls[0]]
@@ -163,7 +184,7 @@ if len(ls) > 1:
         followers( new_followers_ls )
 
     # Write unfollowers markdown list
-    with open("_build\\markdown\\un.md", "wt") as out_md:
+    with open("_build\\markdown\\old.md", "wt") as out_md:
         unfollowers_ls = []
         for first in first_ls:
             if not first in last_ls:
@@ -196,21 +217,27 @@ else:
         out_md.write('')
 
     # Write empty unfollowers markdown list
-    with open("_build\\markdown\\un.md", "wt") as out_md:
+    with open("_build\\markdown\\old.md", "wt") as out_md:
         out_md.write('')
 
 # Template
-html_header = '<!DOCTYPE html>' \
-              '<html>' \
-              '<head>' \
-              '<title>iFollowers</title>' \
-              '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />' \
-              '<meta name="A followers tracking script" content="" />' \
-              '<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />' \
-              '</head>' \
-              '<body>'
-html_footer = '</body>' \
-              '</html>'
+html_header = '''
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>iFollowers</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="A followers tracking script" content="" />
+    <link rel="stylesheet" type="text/css"
+href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+  </head>
+  <body>
+'''
+
+html_footer = '''
+  </body>
+</html>
+'''
 
 # Generate markdown
 with open("_build\\markdown\\last.md", 'rt') as in_md:
@@ -222,15 +249,15 @@ with open("_build\\markdown\\first.md", 'rt') as in_md:
 with open("_build\\markdown\\new.md", 'rt') as in_md:
     new = in_md.read()
     html_new = markdown.markdown(new)
-with open("_build\\markdown\\un.md", 'rt') as in_md:
-    un = in_md.read()
-    html_un = markdown.markdown(un)
+with open("_build\\markdown\\old.md", 'rt') as in_md:
+    old = in_md.read()
+    html_old = markdown.markdown(old)
 
 # Build the page
 html_page = '<div class="col-md-3">'+ html_last +'</div>' \
             '<div class="col-md-3">'+ html_first +'</div>' \
             '<div class="col-md-3">'+ html_new +'</div>' \
-            '<div class="col-md-3">'+ html_un +'</div>'
+            '<div class="col-md-3">'+ html_old +'</div>'
 
 with open("_build\\html\\"+only_date_name+".html", "wt") as out_html:
     out_html.write(html_header + html_page + html_footer)
