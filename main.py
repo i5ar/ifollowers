@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 from builtins import input
 import os
 import time
@@ -15,7 +16,8 @@ ifollowers_info = {
     "python": [(2, 7), (3, 5)],
     "markdown": (2, 5, 2),
     "tweepy": (3, 1, 0),
-    "description": "Followers tracking script for Twitter" }
+    "description": "Followers tracking script for Twitter"
+}
 
 # TODO: Except if no database and Enter input
 owner = ''
@@ -33,7 +35,7 @@ if os.path.isfile('ifollowers.db'):
     access_token = fetch[-1][3]
     access_token_secret = fetch[-1][4]
     conn.close()
-    newner = input('Please enter \"'+ owner +'\" or a new Owner: ') or owner
+    newner = input('Please enter \"'+owner+'\" or a new Owner: ') or owner
 else:
     print('Please go to https://apps.twitter.com/ to Create New App;')
     print('Open Permissions tab and check Read only;')
@@ -57,8 +59,8 @@ if(newner != owner):
         'Consumer Key' TEXT,\
         'Consumer Secret' TEXT,\
         'Access Token' TEXT,\
-        'Access Token Secret' TEXT)"
-    )
+        'Access Token Secret' TEXT)")
+
     # Insert a row of data
     c.execute(
         "INSERT INTO ifolloauth (\
@@ -112,8 +114,9 @@ date_name = time.strftime("%Y-%m-%dT%H%M%S")
 only_date_name = time.strftime("%Y-%m-%d")
 date_name_path = '_build\\dat\\'+date_name+'.dat'
 
-def head( header, ls ):
-    '''Write markdown head'''
+
+def head(header, ls):
+    """Write markdown head."""
     hyphens = len(header)
     out_md.write(header + ' <i>'+str(len(ls))+'</i>\n')
     i = 0
@@ -122,14 +125,17 @@ def head( header, ls ):
         i += 1
     out_md.write('\n\n')
 
-def followers( ls ):
-    '''Write markdown list items'''
+
+def followers(ls):
+    """Write markdown list items."""
     i = 0
     for account in ls:
         i += 1
-        out_md.write(str(i) +'. ['+
-            account +'](https://twitter.com/'+ account +')\n')
+        out_md.write(
+            str(i) + '. [' + account + '](https://twitter.com/' +
+            account + ')\n')
     out_md.write('\n')
+
 
 # Write last followers in data file
 with open(date_name_path, "wt") as out_md:
@@ -139,8 +145,8 @@ with open(date_name_path, "wt") as out_md:
 
 # Write last followers in markdown file
 with open("_build\\markdown\\last.md", "wt") as out_md:
-    head( 'Last followers', last_ls )
-    followers( last_ls )
+    head('Last followers', last_ls)
+    followers(last_ls)
 
 # List data files
 dic = {}
@@ -171,26 +177,26 @@ if len(ls) > 1:
     # Write first followers markdown list
     with open("_build\\markdown\\first.md", "wt") as out_md:
         first_ls = first_followers.split()
-        head( 'First followers', first_ls )
-        followers( first_ls )
+        head('First followers', first_ls)
+        followers(first_ls)
 
     # Write new followers markdown list
     with open("_build\\markdown\\new.md", "wt") as out_md:
         new_followers_ls = []
         for last in last_ls:
-            if not last in first_ls:
+            if last not in first_ls:
                 new_followers_ls.append(last)
-        head( 'New followers', new_followers_ls )
-        followers( new_followers_ls )
+        head('New followers', new_followers_ls)
+        followers(new_followers_ls)
 
     # Write unfollowers markdown list
     with open("_build\\markdown\\old.md", "wt") as out_md:
         unfollowers_ls = []
         for first in first_ls:
-            if not first in last_ls:
+            if first not in last_ls:
                 unfollowers_ls.append(first)
-        head( 'Unfollowers', unfollowers_ls )
-        followers( unfollowers_ls )
+        head('Unfollowers', unfollowers_ls)
+        followers(unfollowers_ls)
 
     # Make "old" directory if it doesn't exist
     # if not os.path.exists('_build\\dat\\old'):
@@ -205,8 +211,8 @@ if len(ls) > 1:
 else:
     # Write last followers markdown list
     with open("_build\\markdown\\last.md", "wt") as out_md:
-        head( 'Followers', last_ls )
-        followers( last_ls )
+        head('Followers', last_ls)
+        followers(last_ls)
 
     # Write empty first followers markdown list
     with open("_build\\markdown\\first.md", "wt") as out_md:
@@ -254,10 +260,10 @@ with open("_build\\markdown\\old.md", 'rt') as in_md:
     html_old = markdown.markdown(old)
 
 # Build the page
-html_page = '<div class="col-md-3">'+ html_last +'</div>' \
-            '<div class="col-md-3">'+ html_first +'</div>' \
-            '<div class="col-md-3">'+ html_new +'</div>' \
-            '<div class="col-md-3">'+ html_old +'</div>'
+html_page = '<div class="col-md-3">' + html_last + '</div>' \
+    '<div class="col-md-3">' + html_first + '</div>' \
+    '<div class="col-md-3">' + html_new + '</div>' \
+    '<div class="col-md-3">' + html_old + '</div>'
 
 with open("_build\\html\\"+only_date_name+".html", "wt") as out_html:
     out_html.write(html_header + html_page + html_footer)
