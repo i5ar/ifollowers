@@ -5,11 +5,12 @@ A *followers* tracking script for Twitter.
 
 > This script was made for fun in my spare time.
 
-When you have a lage number of *unfollowers* there must be a reason! This script will help you to detect them.
+There are a ton of spammers on Twitter, many of them will follow you for a few days.  
+With this script you can track them down and block them forever.
 
 ### Installation and required packages
 
-- Install <a href="https://www.python.org/" target="_blank">Python 3</a> if not already in your operating system;
+- Install <a href="https://www.python.org/" target="_blank">Python</a> if not already in your operating system;
     - Install the PyPA recommended tool <a href="https://pip.pypa.io/" target="_blank">pip</a> for installing Python packages;
         - Install <a href="https://pythonhosted.org/Markdown/" target="_blank">Markdown</a>:
 
@@ -18,17 +19,9 @@ When you have a lage number of *unfollowers* there must be a reason! This script
 
                 pip install tweepy
 
-##### Note
-
-Python 2 is also supported.
-
-- Install the *future* module:
-
-        python -m pip install future
-
 ### Use
 
-Save the script [*main.py*](https://github.com/i5ar/ifollowers/blob/master/main.py) and the module [*ioauth.py*](https://github.com/i5ar/ifollowers/blob/master/ioauth.py) in the same directory, then run the script. It will list and save all your **Current followers** so next time you are going to run the script it will be able to list:
+Save the script [*main.py*](https://github.com/i5ar/ifollowers/blob/master/main.py) and the module [*ioauth.py*](https://github.com/i5ar/ifollowers/blob/master/ioauth.py) in the same directory, then open your terminal and run `python main.py`. It will list and save all your **Current followers** so next time you are going to run the script it will be able to list:
 - **Previous followers**;
 - **New followers**;
 - **Unfollowers**.
