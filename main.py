@@ -103,18 +103,18 @@ for follower in tweepy.Cursor(api.followers, screen_name=owner).items():
 
 
 # Make directories if they do not exist
-if not os.path.exists('_build\\markdown'):
-    os.makedirs('_build\\markdown')
-if not os.path.exists('_build\\html'):
-    os.makedirs('_build\\html')
-if not os.path.exists('_build\\dat'):
-    os.makedirs('_build\\dat')
+if not os.path.exists('_build/markdown'):
+    os.makedirs('_build/markdown')
+if not os.path.exists('_build/html'):
+    os.makedirs('_build/html')
+if not os.path.exists('_build/dat'):
+    os.makedirs('_build/dat')
 
 # Time access and conversions [1]
 # [1]: https://docs.python.org/3.0/library/time.html#time.strftime
 date_name = time.strftime("%Y-%m-%dT%H%M%S")
 only_date_name = time.strftime("%Y-%m-%d")
-date_name_path = '_build\\dat\\'+date_name+'.dat'
+date_name_path = '_build/dat/'+date_name+'.dat'
 
 
 def head(header, ls):
@@ -146,13 +146,13 @@ with open(date_name_path, "wt") as out_md:
     out_md.write('\n')
 
 # Write last followers in markdown file
-with open("_build\\markdown\\last.md", "wt") as out_md:
+with open("_build/markdown/last.md", "wt") as out_md:
     head('Last followers', last_ls)
     followers(last_ls)
 
 # List data files
 dic = {}
-for file in glob.glob("_build\\dat\\*.dat"):
+for file in glob.glob("_build/dat/*.dat"):
     key = int(os.path.getmtime(file))   # Key
     dic[key] = file                     # Value
 # List data files
@@ -177,13 +177,13 @@ if len(ls) > 1:
         first_followers = in_md.read()
 
     # Write first followers markdown list
-    with open("_build\\markdown\\first.md", "wt") as out_md:
+    with open("_build/markdown/first.md", "wt") as out_md:
         first_ls = first_followers.split()
         head('First followers', first_ls)
         followers(first_ls)
 
     # Write new followers markdown list
-    with open("_build\\markdown\\new.md", "wt") as out_md:
+    with open("_build/markdown/new.md", "wt") as out_md:
         new_followers_ls = []
         for last in last_ls:
             if last not in first_ls:
@@ -192,7 +192,7 @@ if len(ls) > 1:
         followers(new_followers_ls)
 
     # Write unfollowers markdown list
-    with open("_build\\markdown\\old.md", "wt") as out_md:
+    with open("_build/markdown/old.md", "wt") as out_md:
         unfollowers_ls = []
         for first in first_ls:
             if first not in last_ls:
@@ -212,20 +212,20 @@ if len(ls) > 1:
 
 else:
     # Write last followers markdown list
-    with open("_build\\markdown\\last.md", "wt") as out_md:
+    with open("_build/markdown/last.md", "wt") as out_md:
         head('Followers', last_ls)
         followers(last_ls)
 
     # Write empty first followers markdown list
-    with open("_build\\markdown\\first.md", "wt") as out_md:
+    with open("_build/markdown/first.md", "wt") as out_md:
         out_md.write('')
 
     # Write empty new followers markdown list
-    with open("_build\\markdown\\new.md", "wt") as out_md:
+    with open("_build/markdown/new.md", "wt") as out_md:
         out_md.write('')
 
     # Write empty unfollowers markdown list
-    with open("_build\\markdown\\old.md", "wt") as out_md:
+    with open("_build/markdown/old.md", "wt") as out_md:
         out_md.write('')
 
 # Template
@@ -248,16 +248,16 @@ html_footer = '''
 '''
 
 # Generate markdown
-with open("_build\\markdown\\last.md", 'rt') as in_md:
+with open("_build/markdown/last.md", 'rt') as in_md:
     last = in_md.read()
     html_last = markdown.markdown(last)
-with open("_build\\markdown\\first.md", 'rt') as in_md:
+with open("_build/markdown/first.md", 'rt') as in_md:
     first = in_md.read()
     html_first = markdown.markdown(first)
-with open("_build\\markdown\\new.md", 'rt') as in_md:
+with open("_build/markdown/new.md", 'rt') as in_md:
     new = in_md.read()
     html_new = markdown.markdown(new)
-with open("_build\\markdown\\old.md", 'rt') as in_md:
+with open("_build/markdown/old.md", 'rt') as in_md:
     old = in_md.read()
     html_old = markdown.markdown(old)
 
@@ -267,10 +267,10 @@ html_page = '<div class="col-md-3">' + html_last + '</div>' \
     '<div class="col-md-3">' + html_new + '</div>' \
     '<div class="col-md-3">' + html_old + '</div>'
 
-with open("_build\\html\\"+only_date_name+".html", "wt") as out_html:
+with open("_build/html/"+only_date_name+".html", "wt") as out_html:
     out_html.write(html_header + html_page + html_footer)
 
 # Get current working directory
 cwd = os.getcwd()
 # Open the file in a browser
-os.system(cwd + "\\_build\\html\\"+only_date_name+".html")
+os.system(cwd + "/_build/html/"+only_date_name+".html")
