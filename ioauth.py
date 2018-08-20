@@ -17,9 +17,3 @@ class DynamicTwitterOAuth(object):
         self.consumer_secret = input('Consumer Secret: ')
         self.access_token = input('Access Token: ')
         self.access_token_secret = input('Access Token Secret: ')
-
-        self.static_isar = "iSar"
-
-    def printargs(self):
-        """Print args."""
-        print(self.static_isar)

@@ -6,9 +6,9 @@ from builtins import input
 import os
 import time
 import glob
+import sqlite3
 import markdown
 import tweepy
-import sqlite3
 import ioauth
 
 ifollowers_info = {
@@ -44,7 +44,7 @@ else:
     print('Open Keys and Access Token tab to copy your Application Settings.')
     newner = input('Owner: ')
 
-if(newner != owner):
+if newner != owner:
     # Dynamic Twitter OAuth
     isar_dynamic_oauth = ioauth.DynamicTwitterOAuth()
     # owner = isar_dynamic_oauth.owner
@@ -81,7 +81,7 @@ if(newner != owner):
     )
     conn.commit()
     conn.close()
-elif(newner == ''):
+elif newner == '':
     print('You must enter a valid owner')
 
 # Tweepy
@@ -89,7 +89,7 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
-# Print followers slow method
+# NOTE: Slow
 # last_ls = []
 # for follower in api.followers_ids(owner):
 #     last_ls.append(api.get_user(follower).screen_name)
@@ -117,10 +117,10 @@ only_date_name = time.strftime("%Y-%m-%d")
 date_name_path = '_build/dat/'+date_name+'.dat'
 
 
-def head(header, ls):
+def head(header, lls):
     """Write markdown head."""
     hyphens = len(header)
-    out_md.write(header + ' <i>'+str(len(ls))+'</i>\n')
+    out_md.write(header + ' <i>'+str(len(lls))+'</i>\n')
     i = 0
     while i < hyphens:
         out_md.write('-')
@@ -128,10 +128,10 @@ def head(header, ls):
     out_md.write('\n\n')
 
 
-def followers(ls):
+def followers(lls):
     """Write markdown list items."""
     i = 0
-    for account in ls:
+    for account in lls:
         i += 1
         out_md.write(
             str(i) + '. [' + account + '](https://twitter.com/' +
@@ -141,8 +141,8 @@ def followers(ls):
 
 # Write last followers in data file
 with open(date_name_path, "wt") as out_md:
-    for i in last_ls:
-        out_md.write(i+'\n')
+    for item in last_ls:
+        out_md.write(item+'\n')
     out_md.write('\n')
 
 # Write last followers in markdown file
@@ -157,7 +157,7 @@ for file in glob.glob("_build/dat/*.dat"):
     dic[key] = file                     # Value
 # List data files
 ls = []
-for key in dic.keys():
+for key in dic:
     ls.append(key)
 # Sort data files
 sorted_ls = sorted(ls)
@@ -229,8 +229,7 @@ else:
         out_md.write('')
 
 # Template
-html_header = '''
-<!DOCTYPE html>
+html_header = '''<!DOCTYPE html>
 <html>
   <head>
     <title>iFollowers</title>
@@ -239,13 +238,7 @@ html_header = '''
     <link rel="stylesheet" type="text/css"
 href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
   </head>
-  <body>
-'''
-
-html_footer = '''
-  </body>
-</html>
-'''
+  <body>'''
 
 # Generate markdown
 with open("_build/markdown/last.md", 'rt') as in_md:
@@ -268,7 +261,7 @@ html_page = '<div class="col-md-3">' + html_last + '</div>' \
     '<div class="col-md-3">' + html_old + '</div>'
 
 with open("_build/html/"+only_date_name+".html", "wt") as out_html:
-    out_html.write(html_header + html_page + html_footer)
+    out_html.write(html_header + html_page + '</body></html>')
 
 # Get current working directory
 cwd = os.getcwd()

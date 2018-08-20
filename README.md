@@ -13,6 +13,7 @@ Install required packages:
 
 ```sh
 git clone https://github.com/i5ar/ifollowers --depth 1
+find ifollowers -type f -print -exec chmod 775 {} \;
 cd ifollowers
 pip install -r requirements.txt
 ```
@@ -20,6 +21,7 @@ pip install -r requirements.txt
 ## Use
 
 Simply run `python main.py`. It will list and save all your **Current followers** so next time you are going to run the script it will be able to list:
+
 - **Previous followers**;
 - **New followers**;
 - **Unfollowers**.
@@ -32,6 +34,7 @@ Simply run `python main.py`. It will list and save all your **Current followers*
 - Access Token Secret;
 
 ### Note
+
 Since Release v0.0.3 iFollowers uses [Tweepy] package so it does not allow to run the script twice in less than 15 minutes. If you get an error, please try again after 15 minutes.
 
 This script is meant to be used in respect of Twitter [Following rules and best practices](https://support.twitter.com/entries/68916-following-rules-and-best-practices).
@@ -40,6 +43,7 @@ I take no responsibility or liability for any damages including damages arising 
 > Please, come back to check new and awesome releases! Any contribution or suggestion will be greatly appreciated.
 
 ## Changelog
+
 *Release Version 0.2.0*
 *Release Date - 01th May, 2017*
 
@@ -77,7 +81,7 @@ I take no responsibility or liability for any damages including damages arising 
 *Release Version 0.0.1*
 *Release Date - 21th December, 2014*
 
- - Having some fun with *BeautifulSoup* coding `ifollowers.py`.
+- Having some fun with *BeautifulSoup* coding `ifollowers.py`.
 
 ## TODO
 
